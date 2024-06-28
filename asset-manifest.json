@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/app_tiempo/static/css/main.ffae78c9.css",
-    "main.js": "/app_tiempo/static/js/main.5c4fccae.js",
+    "main.css": "/app_tiempo/static/css/main.0480864b.css",
+    "main.js": "/app_tiempo/static/js/main.4d13d4ad.js",
     "static/js/453.115368fb.chunk.js": "/app_tiempo/static/js/453.115368fb.chunk.js",
     "static/media/fondoapp.jpg": "/app_tiempo/static/media/fondoapp.193d5b1ccbecc196c275.jpg",
     "index.html": "/app_tiempo/index.html",
-    "main.ffae78c9.css.map": "/app_tiempo/static/css/main.ffae78c9.css.map",
-    "main.5c4fccae.js.map": "/app_tiempo/static/js/main.5c4fccae.js.map",
+    "main.0480864b.css.map": "/app_tiempo/static/css/main.0480864b.css.map",
+    "main.4d13d4ad.js.map": "/app_tiempo/static/js/main.4d13d4ad.js.map",
     "453.115368fb.chunk.js.map": "/app_tiempo/static/js/453.115368fb.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.ffae78c9.css",
-    "static/js/main.5c4fccae.js"
+    "static/css/main.0480864b.css",
+    "static/js/main.4d13d4ad.js"
   ]
 }
