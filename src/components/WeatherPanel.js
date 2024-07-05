@@ -1,6 +1,7 @@
 import React,{useState} from "react";
 import Form from './Form';
 import Card from "./Card";
+import Comentario from "./Comentario";
 
 
 const WeatherPanel = () => {
@@ -66,10 +67,15 @@ const WeatherPanel = () => {
                 forecast = {forecast}
 
             />
+
+            {/* <Comentario
+                tiempo_actual = {weather.weather[0].description}
+                showdata = {show}
+            /> */}
+            
+
         </React.Fragment>
     )
 }
 
 export default WeatherPanel;
-
-//6eedd18851bc285c24dab7eaccc62e9c
