@@ -1,81 +1,58 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import Form from './Form';
 import Card from "./Card";
-import Comentario from "./Comentario";
 
+const WeatherPanel = ({ onCoordinatesChange }) => {
+    const urlWeather = "https://api.openweathermap.org/data/2.5/weather?appid=6eedd18851bc285c24dab7eaccc62e9c&lang=es";
+    const cityUrl = "&q=";
+    const urlForecast = "https://api.openweathermap.org/data/2.5/forecast?appid=6eedd18851bc285c24dab7eaccc62e9c&lang=es";
 
-const WeatherPanel = () => {
-    let urlWeather = "https://api.openweathermap.org/data/2.5/weather?appid=6eedd18851bc285c24dab7eaccc62e9c&lang=es"
-    let cityUrl = "&q="
-    let urlForecast = "https://api.openweathermap.org/data/2.5/forecast?appid=6eedd18851bc285c24dab7eaccc62e9c&lang=es"
+    const [weather, setWeather] = useState([]);
+    const [forecast, setForecast] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [show, setShow] = useState(false);
+    const [location, setLocation] = useState("");
 
-    const [weather,setWeather] = useState([])
-    const [forecast,setForecast] = useState([])
+    const getLocation = async (loc) => {
+        setLoading(true);
+        setLocation(loc);
 
-    const [loading,setLoading] = useState(false)
-    const [show,setShow] = useState(false)
+        const weatherUrl = urlWeather + cityUrl + loc;
 
-    const[location,setLocation] = useState("") // para que se pueda comunicar con lo que se escribe en el fomrulario
+        try {
+            const weatherResponse = await fetch(weatherUrl);
+            if (!weatherResponse.ok) throw new Error("Weather data fetch failed");
 
-    const getLocation = async(loc) => {
-        setLoading(true)
-        setLocation(loc)
+            const weatherData = await weatherResponse.json();
+            setWeather(weatherData);
 
-        //weather
+            const forecastUrl = urlForecast + cityUrl + loc;
+            const forecastResponse = await fetch(forecastUrl);
+            if (!forecastResponse.ok) throw new Error("Forecast data fetch failed");
 
-        urlWeather = urlWeather + cityUrl + loc
+            const forecastData = await forecastResponse.json();
+            setForecast(forecastData);
+            setLoading(false);
+            setShow(true);
 
-        await fetch(urlWeather).then((response) =>{
-            if(!response.ok) throw {response}
-            return response.json()
-        }).then((weatherData) => {
-            console.log(weatherData)
-            setWeather(weatherData)
-        }).catch(error => {
-            console.log(error)
-            setLoading(false)
-            setShow(false)
-        })
+            // Pasar las coordenadas actualizadas a App.js
+            if (weatherData.coord) {
+                const { lat, lon } = weatherData.coord;
+                onCoordinatesChange(lat, lon);
+            }
+        } catch (error) {
+            console.error(error);
+            setLoading(false);
+            setShow(false);
+        }
+    };
 
-        urlForecast = urlForecast + cityUrl + loc
-
-        await fetch(urlForecast).then((response) =>{
-            if(!response.ok) throw {response}
-            return response.json()
-        }).then((forecastData) => {
-            console.log(forecastData)
-            setForecast(forecastData)
-            setLoading(false)
-            setShow(true)
-        }).catch(error => {
-            console.log(error)
-            setLoading(false)
-            setShow(false)
-        })
-    }
-
-    return(
+    return (
         <React.Fragment>
-            <Form
-                newLocation = {getLocation}
-            />
-
-            <Card
-                showData = {show}
-                loadingData = {loading}
-                weather = {weather}
-                forecast = {forecast}
-
-            />
-
-            {/* <Comentario
-                tiempo_actual = {weather.weather[0].description}
-                showdata = {show}
-            /> */}
-            
-
+            <Form newLocation={getLocation} />
+            <Card showData={show} loadingData={loading} weather={weather} forecast={forecast} />
         </React.Fragment>
-    )
-}
+    );
+};
 
 export default WeatherPanel;

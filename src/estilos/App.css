@@ -37,3 +37,12 @@ body{
   padding-left: 20px;
   margin-top: 320px;
 }
+
+.container-desc{
+  margin-top: 5%;
+  margin-bottom: 10%;
+  background-color:transparent;
+  color:aliceblue;
+  width: 30%;
+  display: inline-table;
+}
