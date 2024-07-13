@@ -28,7 +28,7 @@ function App() {
               {coords.lat && coords.lon && <Mapa lat={coords.lat} lon={coords.lon} />} {/* Pasa las coordenadas al componente Mapa */}
             </section>
             <section className="container-desc">
-                <h3>Descripción del proyecto:</h3>
+                <h2>Descripción del proyecto:</h2>
                 <p>Este proyecto lo he desarrollado con React.js, un framework de JavaScript basado en componentes.</p>
                 <p>He utilizado APIs externas como es el caso de Open Weather y de OpenStreetMap.</p>
                 <p>Cualquier pregunta no dude en contactarme</p>

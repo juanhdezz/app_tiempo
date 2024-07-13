@@ -46,3 +46,11 @@ body{
   width: 30%;
   display: inline-table;
 }
+
+@media (max-width: 768px) {
+  .container-desc {
+    width: 100%; /* Ocupa el 100% del ancho de la pantalla */
+    margin-top: 5%;
+    margin-bottom: 15%;
+  }
+}

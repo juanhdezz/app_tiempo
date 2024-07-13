@@ -34,18 +34,18 @@ const Mapa = ({ lat, lon }) => {
     }, [lat, lon]);
 
     // Estilo para el contenedor del mapa
-    const mapStyle = {
-        width: '80%',  // 30% del ancho del contenedor padre
-        height: '300px',  // Altura fija de 300px para hacerlo cuadrado
+    const getMapStyle = () => ({
+        width: '80%',  // 80% del ancho del contenedor padre
+        height: '300px',  // Altura fija de 300px
         margin: '20px auto', // Margen superior e inferior de 20px, centrado horizontalmente
         clear: 'both', // Limpiar flotados para evitar problemas de alineación
         position: 'relative', // Posición relativa para ajustar el z-index si es necesario
-        zIndex: 1 // Ajustar si es necesario para que esté encima de otras secciones
-    };
+        zIndex: 1, // Ajustar si es necesario para que esté encima de otras secciones
+    });
 
     return (
         <div style={{ clear: 'both' }}>
-            <div id="mi_mapa" style={mapStyle}></div>
+            <div id="mi_mapa" style={getMapStyle()}></div>
         </div>
     );
 };
